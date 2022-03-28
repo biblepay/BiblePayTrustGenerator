@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Company>Metaco SA</Company>
+		<Copyright>Copyright © Metaco SA 2017</Copyright>
+		<Description>The C# Bitcoin Library</Description>
+		<LangVersion>9.0</LangVersion>
+	</PropertyGroup>
+  <PropertyGroup>
+	  <TargetFrameworks>net6.0;netcoreapp3.1;net472</TargetFrameworks>
+	  <TargetFrameworks Condition="'$(BuildingInsideVisualStudio)' == 'true'">netcoreapp3.1</TargetFrameworks>
+	  <!--<StartupObject>NBitcoin.Tests.Program</StartupObject>-->
+	  <!--<TargetFrameworks Condition="'$(BuildingInsideVisualStudio)' == 'true' And '$(MSBuildRuntimeType)' == 'Core' ">netcoreapp2.1</TargetFrameworks>-->
+	  <!--<NoWarn>CS0618</NoWarn>-->
+  </PropertyGroup>
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);NOCONSENSUSLIB</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(AdditionalDefineConstants)' != '' ">
+    <DefineConstants>$(DefineConstants);$(AdditionalDefineConstants)</DefineConstants>
+  </PropertyGroup>
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'net472' ">
+		<DefineConstants>$(DefineConstants);WIN</DefineConstants>
+	</PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1' Or '$(TargetFramework)' == 'netcoreapp3.1' ">
+    <DefineConstants>$(DefineConstants);NETCORE;NOTRACESOURCE;NOCUSTOMSSLVALIDATION;NOHTTPSERVER</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(TargetFramework)' == 'netstandard2.1' Or '$(TargetFramework)' == 'net6.0' Or '$(TargetFramework)' == 'netcoreapp3.1') And ( '$(TargetFrameworkOverride)' != 'netstandard2.0' ) ">
+    <DefineConstants>$(DefineConstants);NETCORE;HAS_SPAN;NO_BC</DefineConstants>
+    <RemoveBC>true</RemoveBC>
+  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="coverlet.collector" Version="3.1.0">
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		  <PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="FsCheck" Version="2.13.0" />
+		<PackageReference Include="FsCheck.Xunit" Version="2.13.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+		<ProjectReference Include="..\NBitcoin\NBitcoin.csproj" />
+		<ProjectReference Include="..\NBitcoin.Altcoins\NBitcoin.Altcoins.csproj" />
+		<ProjectReference Include="..\NBitcoin.TestFramework\NBitcoin.TestFramework.csproj" />
+		<PackageReference Include="Microsoft.CSharp" Version="4.6.0" />
+		<PackageReference Include="xunit" Version="2.4.1" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
+		<PackageReference Include="System.Diagnostics.Process" Version="4.3.0" />
+		<PackageReference Include="System.ValueTuple" Version="4.5.0"></PackageReference>
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
+		<PackageReference Include="System.Collections.NonGeneric" Version="4.3.0" />
+		<PackageReference Include="System.Globalization.Extensions" Version="4.3.0" />
+		<PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.3.0" />
+		<PackageReference Include="System.Threading.Thread" Version="4.3.0" />
+	</ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="data\.cookie">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="data\base58_keys_invalid.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\base58_keys_valid.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\blocks\blk00000.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\blocks\blk00001.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\blocks\Block1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\blocks\incompleteblk.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\blocks\rev00000.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\can_parse_transaction.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="data\determiniticECDSA.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="data\bip39_vectors.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\bip39_JP.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\base58_keys_valid2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\openasset-known-tx.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\NicolasDorierCA.pfx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\NicolasDorierMerchant.pfx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\peers.dat" />
+    <None Include="data\script_tests.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\psbt.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\targethistory.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\sighash.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\sig_canonical.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\sig_noncanonical.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\tx_invalid.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\tx_valid.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\SHA256SUMS.asc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Remove="data\liquid-block-mainnet-4a9c3c0fbb1cb8ff106f474e967bc5ec17a7ba066abd605bfc6f0c078e79b609" />
+    <Content Include="data\liquid-block-mainnet-4a9c3c0fbb1cb8ff106f474e967bc5ec17a7ba066abd605bfc6f0c078e79b609">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\block169482.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\block-testnet-828575.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\bip158_vectors.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\bip340_vectors.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="data\bip39_vectors.cz.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="data\bip39_vectors.en.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="data\bip39_vectors.es.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="data\bip39_vectors.fr.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="data\bip39_vectors.ja.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="data\bip39_vectors.zh-CN.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="data\bip39_vectors.zh-TW.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="xunit.runner.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="data\SHA3TestVectors.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

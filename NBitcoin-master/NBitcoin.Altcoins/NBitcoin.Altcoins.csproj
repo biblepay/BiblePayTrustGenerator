@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Company>Metaco SA</Company>
+		<Copyright>Copyright © Metaco SA 2017</Copyright>
+		<Description>The C# Bitcoin Library</Description>
+		<LangVersion>9.0</LangVersion>
+    <PackageIcon>icon.png</PackageIcon>
+		<PackageId>NBitcoin.Altcoins</PackageId>
+		<PackageTags>bitcoin,altcoins,bcash,bgold,bitcore,dash,verge,terracoin,dogecoin,dystem,feathercoin,groestlcoin,litecoin,monacoin,polis,ufo,qtum,viacoin,zclassic,liquid,argoneum,monetaryunit,lbrycredits,xds,althash,neblio</PackageTags>
+		<PackageProjectUrl>https://github.com/MetacoSA/NBitcoin</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;net472;netstandard1.3;netstandard2.0;netstandard2.1</TargetFrameworks>
+		<TargetFrameworks Condition="'$(BuildingInsideVisualStudio)' == 'true'">netstandard2.1</TargetFrameworks>
+    <TargetFrameworks Condition="'$(TargetFrameworkOverride)' != ''">$(TargetFrameworkOverride)</TargetFrameworks>
+		<NoWarn>1591;1573;1572;1584;1570;3021</NoWarn>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Version>3.0.8</Version>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\NBitcoin\NBitcoin.csproj" />
+	</ItemGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' Or '$(TargetFramework)' == 'net6.0'">
+    <DefineConstants>$(DefineConstants);HAS_SPAN</DefineConstants>
+    <RemoveBC>true</RemoveBC>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+	<ItemGroup>
+    <None Include="..\icon.png" Pack="true" PackagePath="\" />
+	  <Compile Remove="HashX11\NeoScrypt.cs" />
+	</ItemGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>portable</DebugType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<Optimize>true</Optimize>
+		<DocumentationFile>bin\Release\NBitcoin.Altcoins.XML</DocumentationFile>
+	</PropertyGroup>
+</Project>

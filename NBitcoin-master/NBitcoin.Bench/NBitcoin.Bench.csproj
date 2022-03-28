@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net6.0;netcoreapp3.1</TargetFrameworks>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
+    <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.13.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+  		<ProjectReference Include="..\NBitcoin.Secp256k1\NBitcoin.Secp256k1.csproj" Condition=" '$(TargetFramework)' != 'net472' " />
+  		<ProjectReference Include="..\NBitcoin\NBitcoin.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' != 'net472' ">
+    <DefineConstants>$(DefineConstants);HAS_SPAN</DefineConstants>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Company>Nicolas Dorier</Company>
+		<Copyright>Copyright © Nicolas Dorier 2020</Copyright>
+		<Description>A port of the Secp256k1 project written in C#</Description>
+    <PackageIcon>icon.png</PackageIcon>
+		<PackageTags>bitcoin,secp256k1</PackageTags>
+		<PackageProjectUrl>https://github.com/MetacoSA/NBitcoin/NBitcoin.Secp256k1</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/MetacoSA/NBitcoin</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;netstandard2.1</TargetFrameworks>
+    <Version Condition=" '$(Version)' == '' ">3.0.1</Version>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);SECP256K1_LIB;HAS_SPAN</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	  <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <DebugType>portable</DebugType>
+    <Optimize>true</Optimize>
+    <NoWarn>1591;1573;1572;1584;1570;3021</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\icon.png" Pack="true" PackagePath="\" />
+    <Compile Include="../NBitcoin/Secp256k1/**/*.cs"></Compile>
+    <Compile Include="../NBitcoin/NullableShims.cs"></Compile>
+  </ItemGroup>
+</Project>
