@@ -1,0 +1,2 @@
+# BiblePayTrustGenerator
+Trust Wallet Generator
