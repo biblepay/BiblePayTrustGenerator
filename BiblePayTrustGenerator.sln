@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiblePayTrustGenerator", "B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NBitcoin", "B:\BiblePay\BiblePayTrustGenerator\NBitcoin-master\NBitcoin\NBitcoin.csproj", "{796E5C3A-45D6-4C47-B1BF-8484859F098E}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "BiblePayTrustGeneratorInstaller", "BiblePayTrustGeneratorInstaller\BiblePayTrustGeneratorInstaller.vdproj", "{FB839908-5753-461B-B1C4-A6A957D716BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{796E5C3A-45D6-4C47-B1BF-8484859F098E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{796E5C3A-45D6-4C47-B1BF-8484859F098E}.Release|x64.ActiveCfg = Release|Any CPU
 		{796E5C3A-45D6-4C47-B1BF-8484859F098E}.Release|x64.Build.0 = Release|Any CPU
+		{FB839908-5753-461B-B1C4-A6A957D716BD}.Debug|Any CPU.ActiveCfg = Debug
+		{FB839908-5753-461B-B1C4-A6A957D716BD}.Debug|x64.ActiveCfg = Debug
+		{FB839908-5753-461B-B1C4-A6A957D716BD}.Release|Any CPU.ActiveCfg = Release
+		{FB839908-5753-461B-B1C4-A6A957D716BD}.Release|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
